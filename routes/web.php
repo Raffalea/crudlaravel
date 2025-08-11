@@ -9,13 +9,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-//membuat rute baru / membuat jalan baru/ jalur baru 
-//rute baru 
+//membuat rute baru / membuat jalan baru/ jalur baru
+//rute baru
 Route::get('belajar', function () {
     return '<h1>Hello world</h1>';
 });
 
-//rute baru menampilkan hello world di controller 
+//rute baru menampilkan hello world di controller
 Route::get('master', [App\Http\Controllers\BelajarController::class, 'index']);
 Route::get('belajar2', [BelajarController::class, 'view']);
 
@@ -23,7 +23,7 @@ Route::get('books',[App\Http\Controllers\BookController::class,'index'])->name('
 // a href = '{{url('/books')}}' ->tanpa name
 // a href = '{{route('book.index')}}' -> menggunakan name
 // form action = {{url('/store')}} -> tanpa nama
-// form action = {{route('book.store')}} -> dengan nama 
+// form action = {{route('book.store')}} -> dengan nama
 Route::get('create-book', [App\Http\Controllers\BookController::class,'create'])->name('book.create');
 Route::post('storebook', [App\Http\Controllers\BookController::class, 'store'])->name('book.store');
 Route::delete('destroybook/{id}',[App\Http\Controllers\BookController::class,'destroy'])->name('book.destroy');
@@ -38,6 +38,15 @@ Route::post('store-category',[App\Http\Controllers\CategoryController::class, 's
 Route::delete('destroy-category/{id}',[App\Http\Controllers\CategoryController::class,'destroy'])->name('category.destroy');
 Route::get('edit-category/{id}',[App\Http\Controllers\CategoryController::class,'edit'])->name('category.edit');
 Route::put('update-category/{id}', [App\Http\Controllers\CategoryController::class,'update'])->name('category.update');
+
+//rute product
+Route::get('product', [App\Http\Controllers\ProductController::class, 'index'])->name('product.index');
+Route::get('create-product', [App\Http\Controllers\ProductController::class, 'create'])->name('product.create');
+Route::post('store-product', [App\Http\Controllers\ProductController::class, 'store'])->name('product.store');
+//delete
+Route::delete('destroy-product/{id}',[App\Http\Controllers\ProductController::class,'destroy'])->name('product.destroy');
+Route::get('edit-product/{id}',[App\Http\Controllers\ProductController::class,'edit'])->name('product.edit');
+Route::put('update-product/{id}', [App\Http\Controllers\ProductController::class,'update'])->name('product.update');
 
 //sales routing
 Route::get('sales', [App\Http\Controllers\SalesController::class, 'index'])->name('sales.index');
