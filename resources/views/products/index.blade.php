@@ -1,7 +1,7 @@
 @extends('master')
 
 @section('title')
-    <title>Categories</title>
+    <title>Products</title>
 @endsection
 
 @section('content')
