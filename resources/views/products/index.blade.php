@@ -15,7 +15,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <a href="{{ route('category.create') }}" class="btn btn-outline-primary">Tambah Kategori</a>
+                            <a href="{{ route('product.create') }}" class="btn btn-outline-primary">Tambah Produk</a>
                         </div>
                         <div class="card-body">
                             @if (session('success'))

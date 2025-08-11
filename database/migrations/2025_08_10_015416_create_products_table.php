@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('name', 100)->nullable();
             $table->foreignId('category_id')->nullable()->constrained('categories')->onDelete('set null');
             // $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade'); //format defaultnya laravel
-            $table->decimal('price', 5, 2)->nullable();
+            $table->decimal('price', 10, 2)->nullable();
             $table->unsignedInteger('stock')->nullable()->default(0);
             $table->timestamps();
 
