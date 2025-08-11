@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('sku', 100)->unique();
             $table->string('name', 100)->nullable();
-            $table->foreignId('category_id')->nullable()->constrained('categories');
+            $table->foreignId('category_id')->nullable()->constrained('categories')->onDelete('set null');
             // $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade'); //format defaultnya laravel
             $table->decimal('price', 5, 2)->nullable();
             $table->unsignedInteger('stock')->nullable()->default(0);
