@@ -47,8 +47,8 @@
                                                 <td>{{ $item->price }}</td>
                                                 <td>{{ $item->stock }}</td>
                                                 <td>
-                                                    <a href="{{ route('category.edit', $item->id) }}" class="btn btn-sm btn-warning">Edit</a>
-                                                    <form action="{{ route('category.destroy', $item->id) }}" method="POST" class="d-inline">
+                                                    <a href="{{ route('product.edit', $item->id) }}" class="btn btn-sm btn-warning">Edit</a>
+                                                    <form action="{{ route('product.destroy', $item->id) }}" method="POST" class="d-inline">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
