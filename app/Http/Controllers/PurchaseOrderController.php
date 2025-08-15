@@ -3,63 +3,110 @@
 namespace App\Http\Controllers;
 
 use App\Models\PurchaseOrder;
+use App\Models\PurchaseOrderItem;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class PurchaseOrderController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    // Tampilkan daftar PO
     public function index()
     {
-        //
+        $purchaseOrders = PurchaseOrder::with('items')->get();
+        return view('Purchase-order.index', compact('purchaseOrders'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+    // Tampilkan form tambah PO
     public function create()
     {
-        //
+        $products = Product::all();
+        return view('Purchase-order.create', compact('products'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    // Simpan PO baru beserta item
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'number' => 'required|unique:purchase_orders',
+            'date' => 'required|date',
+            'supplier' => 'required|string',
+            'items.*.product_id' => 'required|exists:products,id',
+            'items.*.quantity' => 'required|integer|min:1',
+            'items.*.price' => 'required|numeric|min:0',
+        ]);
+
+        $po = PurchaseOrder::create([
+            'number' => $request->number,
+            'date' => $request->date,
+            'supplier' => $request->supplier,
+        ]);
+
+        foreach ($request->items as $item) {
+            PurchaseOrderItem::create([
+                'purchase_order_id' => $po->id,
+                'product_id' => $item['product_id'],
+                'quantity' => $item['quantity'],
+                'price' => $item['price'],
+            ]);
+        }
+
+        return redirect()->route('Purchase-order.index')->with('success', 'Purchase Order berhasil disimpan.');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(PurchaseOrder $purchaseOrder)
+    // Tampilkan detail PO
+    public function show($id)
     {
-        //
+        $po = PurchaseOrder::with('items.product')->findOrFail($id);
+        return view('Purchase-order', compact('po'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(PurchaseOrder $purchaseOrder)
+    // Tampilkan form edit PO
+    public function edit($id)
     {
-        //
+        $po = PurchaseOrder::with('items')->findOrFail($id);
+        $products = Product::all();
+        return view('Purchase-order.edit', compact('po', 'products'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, PurchaseOrder $purchaseOrder)
+    // Update PO dan item
+    public function update(Request $request, $id)
     {
-        //
+        $po = PurchaseOrder::findOrFail($id);
+
+        $request->validate([
+            'number' => 'required|unique:purchase_orders,number,' . $po->id,
+            'date' => 'required|date',
+            'supplier' => 'required|string',
+            'items.*.product_id' => 'required|exists:products,id',
+            'items.*.quantity' => 'required|integer|min:1',
+            'items.*.price' => 'required|numeric|min:0',
+        ]);
+
+        $po->update([
+            'number' => $request->number,
+            'date' => $request->date,
+            'supplier' => $request->supplier,
+        ]);
+
+        // Hapus semua item lama, lalu simpan ulang
+        // $po->items()->delete();
+        // foreach ($request->items as $item) {
+        //     PurchaseOrderItem::create([
+        //         'purchase_order_id' => $po->id,
+        //         'product_id' => $item['product_id'],
+        //         'quantity' => $item['quantity'],
+        //         'price' => $item['price'],
+        //     ]);
+        // }
+
+        return redirect()->route('Purchase-order.index')->with('success', 'Purchase Order berhasil diupdate.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(PurchaseOrder $purchaseOrder)
+    // Hapus PO
+    public function destroy($id)
     {
-        //
+        $po = PurchaseOrder::findOrFail($id);
+        $po->delete();
+        return redirect()->route('Purchase-order.index')->with('success', 'Purchase Order berhasil dihapus.');
     }
 }

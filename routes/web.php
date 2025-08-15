@@ -55,3 +55,14 @@ Route::get('sales', [App\Http\Controllers\SalesController::class, 'index'])->nam
 Route::post('sales/items', [App\Http\Controllers\SalesItemController::class, 'store'])->name('sales.items.store');
 Route::put('sales/items/{id}', [App\Http\Controllers\SalesItemController::class, 'update'])->name('sales.items.update');
 Route::delete('sales/items/{id}', [App\Http\Controllers\SalesItemController::class, 'destroy'])->name('sales.items.destroy');
+
+//route purchase order
+
+// route purchase order
+Route::get('Purchase-Order', [App\Http\Controllers\PurchaseOrderController::class, 'index'])->name('Purchase-order.index');
+Route::get('Purchase-Order/create', [App\Http\Controllers\PurchaseOrderController::class, 'create'])->name('Purchase-order.create');
+Route::post('Purchase-order/store', [App\Http\Controllers\PurchaseOrderController::class, 'store'])->name('Purchase-order.store');
+Route::delete('Purchase-order/destroy/{id}', [App\Http\Controllers\PurchaseOrderController::class, 'destroy'])->name('Purchase-order.destroy');
+Route::get('Purchase-order/edit/{id}', [App\Http\Controllers\PurchaseOrderController::class, 'edit'])->name('Purchase-order.edit');
+Route::put('Purchase-order/update/{id}', [App\Http\Controllers\PurchaseOrderController::class, 'update'])->name('Purchase-order.update');
+Route::get('Purchase-order/{id}', [App\Http\Controllers\PurchaseOrderController::class, 'show'])->name('Purchase-order.show');

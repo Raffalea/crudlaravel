@@ -18,6 +18,9 @@
             <li><a class="nav-link" href="{{ route('sales.index') }}">
                     <i class="fas fa-th-large"></i> <span>Sales</span></a>
             </li>
+                        <li><a class="nav-link" href="{{ route('Purchase-order.index') }}">
+                    <i class="fas fa-th-large"></i> <span>Purchase Order</span></a>
+            </li>
         </ul>
     </aside>
 </div>
