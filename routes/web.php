@@ -66,3 +66,12 @@ Route::delete('Purchase-order/destroy/{id}', [App\Http\Controllers\PurchaseOrder
 Route::get('Purchase-order/edit/{id}', [App\Http\Controllers\PurchaseOrderController::class, 'edit'])->name('Purchase-order.edit');
 Route::put('Purchase-order/update/{id}', [App\Http\Controllers\PurchaseOrderController::class, 'update'])->name('Purchase-order.update');
 Route::get('Purchase-order/{id}', [App\Http\Controllers\PurchaseOrderController::class, 'show'])->name('Purchase-order.show');
+
+//route sales order
+Route::get('Sales-Order', [App\Http\Controllers\SalesOrderController::class, 'index'])->name('Sales-order.index');
+Route::get('Sales-Order/create', [App\Http\Controllers\SalesOrderController::class, 'create'])->name('Sales-order.create');
+Route::post('Sales-Order/store', [App\Http\Controllers\SalesOrderController::class, 'store'])->name('Sales-order.store');
+Route::delete('Sales-Order/destroy/{id}', [App\Http\Controllers\SalesOrderController::class, 'destroy'])->name('Sales-order.destroy');
+Route::get('Sales-Order/edit/{id}', [App\Http\Controllers\SalesOrderController::class, 'edit'])->name('Sales-order.edit');
+Route::put('Sales-Order/update/{id}', [App\Http\Controllers\SalesOrderController::class, 'update'])->name('Sales-order.update');
+Route::get('Sales-Order/{id}', [App\Http\Controllers\SalesOrderController::class, 'show'])->name('Sales-order.show');
