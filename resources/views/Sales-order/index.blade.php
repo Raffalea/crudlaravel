@@ -14,7 +14,7 @@
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th>No PO</th>
+                        <th>No SO</th>
                         <th>Tanggal</th>
                         <th>Supplier</th>
                         <th>Jumlah Item</th>
@@ -22,16 +22,16 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($purchaseOrders as $po)
+                    @foreach ($salesOrders as $salesOrders)
                         <tr>
-                            <td>{{ $po->number }}</td>
-                            <td>{{ $po->date }}</td>
-                            <td>{{ $po->supplier }}</td>
-                            <td>{{ $po->items->count() }}</td>
+                            <td>{{ $salesOrders->number }}</td>
+                            <td>{{ $salesOrders->date }}</td>
+                            <td>{{ $salesOrders->supplier }}</td>
+                            <td>{{ $salesOrders->items->count() }}</td>
                             <td>
-                                <a href="{{ route('Sales-order.show', $po->id) }}" class="btn btn-info btn-sm">Detail</a>
-                                <a href="{{ route('Sales-order.edit', $po->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                                <form action="{{ route('Sales-order.destroy', $po->id) }}" method="POST" class="d-inline">
+                                <a href="{{ route('Sales-order.show', $salesOrders->id) }}" class="btn btn-info btn-sm">Detail</a>
+                                <a href="{{ route('Sales-order.edit', $salesOrders->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                                <form action="{{ route('Sales-order.destroy', $salesOrders->id) }}" method="POST" class="d-inline">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-sm btn-danger"

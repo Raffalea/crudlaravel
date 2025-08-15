@@ -52,6 +52,7 @@ class SalesOrderController extends Controller
 
         foreach ($request->items as $item) {
             $salesOrder->items()->create([
+                'sales_order_id' => $salesOrder->id,
                 'product_id' => $item['product_id'],
                 'quantity' => $item['quantity'],
                 'price' => $item['price'],
