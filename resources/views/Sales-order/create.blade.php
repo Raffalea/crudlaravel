@@ -1,13 +1,13 @@
 @extends('master')
 
 @section('title')
-    <title>Tambah Purchase Order</title>
+    <title>Tambah Sales Order</title>
 @endsection
 
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h1>Tambah Purchase Order</h1>
+            <h1>Tambah Sales Order</h1>
         </div>
         <div class="section-body">
             <form action="{{ route('Sales-order.store') }}" method="POST">
@@ -21,8 +21,8 @@
                     <input type="date" name="date" class="form-control" required>
                 </div>
                 <div class="form-group">
-                    <label>Supplier</label>
-                    <input type="text" name="supplier" class="form-control" required>
+                    <label>Customer</label>
+                    <input type="text" name="customer" class="form-control" required>
                 </div>
                 <hr>
                 <h5>Item Barang</h5>

@@ -8,7 +8,7 @@
     <section class="section">
         <div class="section-header">
             <h1>Sales Orders</h1>
-            <a href="{{ route('Sales-order.create') }}" class="btn btn-primary ml-auto">Tambah Purchase Order</a>
+            <a href="{{ route('Sales-order.create') }}" class="btn btn-primary ml-auto">Tambah Sales Order</a>
         </div>
         <div class="section-body">
             <table class="table table-bordered">
@@ -16,7 +16,7 @@
                     <tr>
                         <th>No SO</th>
                         <th>Tanggal</th>
-                        <th>Supplier</th>
+                        <th>Customer</th>
                         <th>Jumlah Item</th>
                         <th>Aksi</th>
                     </tr>
@@ -26,7 +26,7 @@
                         <tr>
                             <td>{{ $salesOrders->number }}</td>
                             <td>{{ $salesOrders->date }}</td>
-                            <td>{{ $salesOrders->supplier }}</td>
+                            <td>{{ $salesOrders->customer }}</td>
                             <td>{{ $salesOrders->items->count() }}</td>
                             <td>
                                 <a href="{{ route('Sales-order.show', $salesOrders->id) }}" class="btn btn-info btn-sm">Detail</a>
